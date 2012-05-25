@@ -26,7 +26,7 @@ Example :
         function() { document.getElementById('progress').innerHTML = "FAILURE"; },
         // progress callback
         function(infos) { 
-            document.getElementById('progress').innerHTML = FileDownloader.status[infos.status] + ' ' + infos.progress;
+            document.getElementById('progress').innerHTML = window.plugins.Download.status[infos.status] + ' ' + infos.progress;
         }
     );
 
