@@ -53,7 +53,7 @@ Dependencies :
 Todo :
 --
 
- - Use `content-type` HTTP header instead of extension to detect ZIPs
+ - ~~Use `content-type` HTTP header instead of extension to detect ZIPs~~
 
  [0]: https://github.com/pokeb/asi-http-request/tree
  [1]: https://github.com/samsoffes/ssziparchive
