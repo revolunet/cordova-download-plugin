@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cordova Download plugin demo</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta charset="utf-8">
+    <link href="http://lea.verou.me/polyfills/progress/progress-polyfill.css" rel="stylesheet" />
+
+    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova-download.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://lea.verou.me/polyfills/progress/progress-polyfill.js"></script>
+    
+    <script type="text/javascript">
+
+    function onBodyLoad()
+    {
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // some sample files to play with
+        var files = [
+            'https://github.com/apache/incubator-cordova-js/zipball/master',
+            'https://github.com/phonegap/phonegap-plugins/zipball/master',
+            'http://substack.net/images/npmdep/npm-twopi.png',
+            'http://fc05.deviantart.net/fs70/f/2012/125/0/a/lol_cats_me_by_kittenknowskungfu-d4yo4xm.jpg'
+        ];
+
+        for (var i = files.length - 1; i >= 0; i--) {
+          var file = files[i];
+          $('#downloads').append(' \
+              <b>' + file + '</b><br><br>  \
+              <button id="download'+ i +'">START DOWNLOAD </button>&nbsp;  \
+              <span id="status' + i +'" style="width:120px">IDLE</span>&nbsp; \
+              <progress id="progress' + i +'"  style="width:300px;" value=0.3 max=1 />      \
+              <hr/> \
+          ');
+          $('#download' + i).on('click', function() {
+            window.plugins.Download.start(
+                file, 
+                function() { $('#status' + i).html("SUCCESS"); },
+                function() { $('#status' + i).html("FAILURE"); },
+                function(info) { 
+                  $('#status' + i).html(FileDownload.status[info.status]); 
+                  $('#status' + i).attr('progress', info.progress);
+                }
+            );
+          })
+        };
+    }
+    
+    function onDeviceReady() {}
+
+    // function test1() {
+    //     window.plugins.Download.start(
+    //                 'http://revolunet.com/hello', 
+    //                 function() {console.log('SUCCESS', arguments); document.getElementById('progress1v').innerHTML = "SUCCESS";},
+    //                 function() {console.log('FAIL', arguments); document.getElementById('progress1v').innerHTML = "FAIL";},
+    //                 function(progress) {console.log(progress); document.getElementById('progress1v').innerHTML = FileDownload.status[progress.status] + ' ' + progress.progress;}
+    //     );
+    // }
+    //     function test2() {
+    //         window.plugins.Download.start(
+    //                 'http://office.revolunet.com/demo/yui.zip', 
+    //                  function(progress) {console.log('SUCCESS', arguments); document.getElementById('progress2v').innerHTML = "SUCCESS";},
+    //                  function(progress) {console.log('FAIL', arguments); document.getElementById('progress2v').innerHTML = "FAIL";},
+    //                  function(progress) {console.log(progress); document.getElementById('progress2v').innerHTML = FileDownload.status[progress.status] + ' ' + progress.progress;}
+    //         );
+    //     }
+    //     function test3() {
+    //         window.plugins.Download.start(
+    //                                                'http://office.revolunet.com/demo/sencha-touch-2-rc.zip', 
+    //                                                function(progress) {console.log('SUCCESS', arguments); document.getElementById('progress3v').innerHTML = "SUCCESS";},
+    //                                                function(progress) {console.log('FAIL', arguments); document.getElementById('progress3v').innerHTML = "FAIL";},
+    //                                                function(progress) {console.log(progress); document.getElementById('progress3v').innerHTML = FileDownload.status[progress.status] + ' ' + progress.progress;}
+    //                                                );
+    //     }
+    //     function test4() {
+    //         window.plugins.Download.start(
+    //                                                'http://office.revolunet.com/demo/sencha-touch-2-rc-2.zip', 
+    //                                                function(progress) {console.log('SUCCESS', arguments); document.getElementById('progress4v').innerHTML = "SUCCESS";},
+    //                                                function(progress) {console.log('FAIL', arguments); document.getElementById('progress4v').innerHTML = "FAIL";},
+    //                                                function(progress) {console.log(progress); document.getElementById('progress4v').innerHTML = FileDownload.status[progress.status] + ' ' + progress.progress;}
+    //                                                );
+    //     }
+    </script>
+  </head>
+  <body onload="onBodyLoad()">
+    <h1>Cordova Download plugin test</h1>
+    
+    <i>Some example files.</i>
+    <br><br>
+    <div id="downloads"></div>
+
+    <br><br><br><br>
+
+    Proudly made by <a href='http://revolunet.com'>revolunet team</a>
+
+  </body>
+</html>
