@@ -5,8 +5,9 @@ Simple plugin allows native downloads from javascript and get notified via a pro
 
 
  - multiple concurrent downloads
- - progress callback for download and unzip
- - auto detect ZIP files, unzip them and delete original zip
+ - progress callbacks for downloads and unzip operations
+ - auto detect ZIP files, unzip then delete original zip
+ - files are extracted in the `NSDocumentDirectory`of the application but you can override
  - iOS only at the moment
  
 Proudly made by the [revolunet team][2]
@@ -27,6 +28,8 @@ Example :
             var statusText = window.plugins.Download.status[infos.status];
             $(#'progress').html =  statusText + ' ' + infos.progress;
         }
+        // here you can specify an absolute output directory where to place the file
+        // eg: '/Documents/mydownloads'
     );
 
 There is a full working example at `index.html`.
