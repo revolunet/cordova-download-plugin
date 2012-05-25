@@ -3,15 +3,13 @@ Cordova Download Plugin
 
 Simple plugin allows native downloads from javascript and get notified via a progress callback.
 
- - iOS only at the moment
- - Proudly made by the [revolunet team][2]
-
-Features :
---
 
  - multiple concurrent downloads
  - progress callback for download and unzip
  - auto detect ZIP files, unzip them and delete original zip
+ - iOS only at the moment
+ 
+Proudly made by the [revolunet team][2]
 
 
 Example :
@@ -21,15 +19,17 @@ Example :
         // File to download
         'https://github.com/revolunet/incubator-cordova-js/zipball/master', 
         // success callback
-        function() { document.getElementById('progress').innerHTML = "SUCCESS"; },
+        function() { $(#'progress').html("SUCCESS"); },
         // failure callback
-        function() { document.getElementById('progress').innerHTML = "FAILURE"; },
+        function() { $(#'progress').html("FAILURE"); },
         // progress callback
         function(infos) { 
-            document.getElementById('progress').innerHTML = window.plugins.Download.status[infos.status] + ' ' + infos.progress;
+            var statusText = window.plugins.Download.status[infos.status];
+            $(#'progress').html =  statusText + ' ' + infos.progress;
         }
     );
 
+There is a full working example at `index.html`.
 
 Installation :
 --
