@@ -3,6 +3,8 @@ Cordova Download Plugin
 
 Simple plugin allows native downloads from javascript and get notified via a progress callback.
 
+The plugin is known to work from cordova 1.7 to 2.0
+
 
  - multiple concurrent downloads
  - progress callbacks for downloads and unzip operations
