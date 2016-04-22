@@ -1,6 +1,8 @@
 Cordova Download Plugin
 ====
 
+:warning: DEPRECATED, use https://github.com/apache/cordova-plugin-file-transfer instead
+
 Simple plugin allows native downloads from javascript and get notified via a progress callback.
 
 The plugin is known to work from cordova 1.7 to 2.0
